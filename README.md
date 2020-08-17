@@ -8,3 +8,6 @@ Test task for the vuejs frontent position.
 ## Getting started with docker-compose
 1. Clone repository
 2. docker-compose up
+
+## Test login/password
+admin/admin
