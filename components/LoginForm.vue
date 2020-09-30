@@ -1,9 +1,7 @@
 <template>
-  <div style="min-width: 50%;">
+  <div style="min-width: 50%">
     <v-card>
-      <v-card-title>
-        Login form
-      </v-card-title>
+      <v-card-title> Login form </v-card-title>
       <v-card-text>
         <form>
           <v-text-field
@@ -74,9 +72,8 @@ export default {
       return users.find((user) => user.login === this.login);
     },
     submit() {
-      if (this.$v.$invalid) {
-        return;
-      }
+      if (this.$v.$invalid) return;
+
       const user = this.getUser();
       if (!user || user.password !== this.password) {
         this.wrongLoginOrPassword.push("Wrong Login or Password");
