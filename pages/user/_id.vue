@@ -27,8 +27,6 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-
 export default {
   validate({ params }) {
     return /^\d+$/.test(params.id);
@@ -36,9 +34,9 @@ export default {
   middleware: ["auth"],
   layout: "lk",
   computed: {
-    ...mapGetters({
-      user: "user/currentUser",
-    }),
+    user() {
+      return this.$cookies.get("user");
+    },
   },
 };
 </script>

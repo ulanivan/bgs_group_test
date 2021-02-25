@@ -1,5 +1,6 @@
-export default ({ store, redirect }) => {
-  if (!store.getters['user/hasToken']) {
-    redirect('/')
+export default ({ app, redirect }) => {
+  const user = app.$cookies.get('user');
+  if (!user) {
+    redirect('/');
   }
 }

@@ -3,7 +3,7 @@
     <v-card>
       <v-card-title> Login form </v-card-title>
       <v-card-text>
-        <form>
+        <form @submit.prevent="submit">
           <v-text-field
             v-model="login"
             :error-messages="loginErrors"
@@ -11,18 +11,17 @@
             required
             @input="$v.login.$touch()"
             @blur="$v.login.$touch()"
-          ></v-text-field>
+          />
           <v-text-field
             v-model="password"
             :error-messages="passwordErrors"
             label="Password"
+            type="password"
             required
             @input="$v.password.$touch()"
             @blur="$v.password.$touch()"
-          ></v-text-field>
-          <v-btn class="mr-4 mt-2" color="success" @click="submit"
-            >Login
-          </v-btn>
+          />
+          <v-btn class="mr-4 mt-2" color="success" type="submit">Login</v-btn>
         </form>
       </v-card-text>
     </v-card>
@@ -49,9 +48,7 @@ export default {
   },
   validations: {
     login: { required },
-    password: {
-      required,
-    },
+    password: { required },
   },
   computed: {
     loginErrors() {
@@ -68,6 +65,9 @@ export default {
     },
   },
   methods: {
+    ...mapActions({
+      loginUser: "user/login",
+    }),
     getUser() {
       return users.find((user) => user.login === this.login);
     },
@@ -82,9 +82,6 @@ export default {
       this.loginUser(user);
       this.$router.push({ path: `/user/${user.id}` });
     },
-    ...mapActions({
-      loginUser: "user/login",
-    }),
   },
 };
 </script>

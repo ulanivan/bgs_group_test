@@ -1,7 +1,4 @@
 module.exports = {
-  /*
-  ** Headers of the page
-  */
   head: {
     title: 'bgs_group_test',
     meta: [
@@ -13,29 +10,20 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
-  /*
-  ** Customize the progress bar color
-  */
   loading: { color: '#3B8070' },
-  /*
-  ** Build configuration
-  */
   buildModules: [
     '@nuxtjs/vuetify',
     '@nuxtjs/axios'
   ],
+  modules: ['cookie-universal-nuxt'],
   plugins: [
-    { src: '~/plugins/localStorage.js', ssr: false },
     { src: '~/plugins/vuelidate.js', ssr: false },
   ],
   build: {
     vendor: [
       'vuelidate'
     ],
-    /*
-    ** Run ESLint on save
-    */
-    extend (config, { isDev, isClient }) {
+    extend(config, { isDev, isClient }) {
       if (isDev && isClient) {
         config.module.rules.push({
           enforce: 'pre',
